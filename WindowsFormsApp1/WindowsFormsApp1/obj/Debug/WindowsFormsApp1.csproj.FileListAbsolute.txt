@@ -1,0 +1,16 @@
+C:\Users\chuck\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+C:\Users\chuck\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+C:\Users\chuck\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+C:\Users\chuck\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\DynamicInterop.dll
+C:\Users\chuck\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\RDotNet.dll
+C:\Users\chuck\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\RDotNet.NativeLibrary.dll
+C:\Users\chuck\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\DynamicInterop.xml
+C:\Users\chuck\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\RDotNet.xml
+C:\Users\chuck\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\RDotNet.NativeLibrary.xml
+C:\Users\chuck\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojResolveAssemblyReference.cache
+C:\Users\chuck\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
+C:\Users\chuck\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\chuck\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.Cache
+C:\Users\chuck\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+C:\Users\chuck\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+C:\Users\chuck\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
