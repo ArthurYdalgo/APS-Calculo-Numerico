@@ -482,6 +482,247 @@ namespace WindowsFormsApp1
                 }
                 #endregion
 
+                #region Metodo de Newton
+                if (comboBox1.SelectedItem.Equals("Método de Newton-Raphson"))
+                {
+                    int count = 1;
+                    float midT = 0, mid = 0;
+
+                    try
+                    {
+                        input = textBox1.Text;
+                        string aT = textBox2.Text;
+                        string bT = textBox3.Text;
+                        Stop = float.Parse(textBox5.Text);
+                        rExp = "func = deriv(" + input + ",\"x\",func=TRUE);func(" + aT + ");";
+                        MessageBox.Show(rExe(engine, rExp));
+                        /*
+
+                        if (comboBox2.SelectedItem.Equals("EA"))
+                        {
+                            its += input + bl;
+                            its += "[a,b] = [" + aT + "," + bT + "]" + bl;
+
+                            do
+                            {
+                                its += bl + "-> Iteração " + Convert.ToString(count) + bl + bl;
+                                count++;
+
+                                rExp = "x=" + aT + ";" + input;
+                                a = float.Parse(rExe(engine, rExp));
+                                its += "f(" + aT + ") = " + Convert.ToString(a);
+                                if (a < 0)
+                                    its += " < 0" + bl;
+                                else
+                                    its += " > 0" + bl;
+
+                                rExp = "x=" + bT + ";" + input;
+                                b = float.Parse(rExe(engine, rExp));
+                                its += "f(" + bT + ") = " + Convert.ToString(b);
+                                if (b < 0)
+                                    its += " < 0" + bl;
+                                else
+                                    its += " > 0" + bl;
+
+                                midT = (float.Parse(aT) + float.Parse(bT)) / 2;
+                                rExp = "x=" + Convert.ToString(midT) + ";" + input;
+                                mid = float.Parse(rExe(engine, rExp));
+                                its += "(a+b)/2 = " + Convert.ToString(midT) + bl;
+                                its += "f(" + midT + ") = " + Convert.ToString(mid);
+                                if (mid < 0)
+                                    its += " < 0" + bl;
+                                else
+                                    its += " > 0" + bl;
+                                its += "Erro absoluto: " + Convert.ToString(Math.Abs(valorReal - midT)) + bl;
+
+                                if ((mid > 0 && b > 0 && a < 0) || (mid < 0 && b < 0 && a > 0))
+                                {
+                                    bT = Convert.ToString(midT);
+                                }
+                                else
+                                {
+                                    aT = Convert.ToString(midT);
+                                }
+                            }
+                            while (Math.Abs(valorReal - midT) > Stop);
+                            its += bl + "Resultado: " + midT + bl;
+                            its += bl;
+                        }
+                        else if (comboBox2.SelectedItem.Equals("ER"))
+                        {
+                            its += input + bl;
+                            its += "[a,b] = [" + aT + "," + bT + "]" + bl;
+
+                            do
+                            {
+                                its += bl + "-> Iteração " + Convert.ToString(count) + bl + bl;
+                                count++;
+
+                                rExp = "x=" + aT + ";" + input;
+                                a = float.Parse(rExe(engine, rExp));
+                                its += "f(" + aT + ") = " + Convert.ToString(a);
+                                if (a < 0)
+                                    its += " < 0" + bl;
+                                else
+                                    its += " > 0" + bl;
+
+                                rExp = "x=" + bT + ";" + input;
+                                b = float.Parse(rExe(engine, rExp));
+                                its += "f(" + bT + ") = " + Convert.ToString(b);
+                                if (b < 0)
+                                    its += " < 0" + bl;
+                                else
+                                    its += " > 0" + bl;
+
+                                midT = (float.Parse(aT) + float.Parse(bT)) / 2;
+                                rExp = "x=" + Convert.ToString(midT) + ";" + input;
+                                mid = float.Parse(rExe(engine, rExp));
+                                its += "(a+b)/2 = " + Convert.ToString(midT) + bl;
+                                its += "f(" + midT + ") = " + Convert.ToString(mid);
+                                if (mid < 0)
+                                    its += " < 0" + bl;
+                                else
+                                    its += " > 0" + bl;
+                                its += "Erro relativo: " + Convert.ToString((Math.Abs(valorReal - midT)) / valorReal) + bl;
+
+                                if ((mid > 0 && b > 0 && a < 0) || (mid < 0 && b < 0 && a > 0))
+                                {
+                                    bT = Convert.ToString(midT);
+                                }
+                                else
+                                {
+                                    aT = Convert.ToString(midT);
+                                }
+                            }
+                            while ((Math.Abs(valorReal - midT) / valorReal) > Stop);
+                            its += bl + "Resultado: " + midT + bl;
+                            its += bl;
+                        }
+                        else if (comboBox2.SelectedItem.Equals("Nº de iterações"))
+                        {
+                            its += input + bl;
+                            its += "[a,b] = [" + aT + "," + bT + "]" + bl;
+
+                            do
+                            {
+                                its += bl + "-> Iteração " + Convert.ToString(count) + bl + bl;
+                                count++;
+
+                                rExp = "x=" + aT + ";" + input;
+                                a = float.Parse(rExe(engine, rExp));
+                                its += "f(" + aT + ") = " + Convert.ToString(a);
+                                if (a < 0)
+                                    its += " < 0" + bl;
+                                else
+                                    its += " > 0" + bl;
+
+                                rExp = "x=" + bT + ";" + input;
+                                b = float.Parse(rExe(engine, rExp));
+                                its += "f(" + bT + ") = " + Convert.ToString(b);
+                                if (b < 0)
+                                    its += " < 0" + bl;
+                                else
+                                    its += " > 0" + bl;
+
+                                midT = (float.Parse(aT) + float.Parse(bT)) / 2;
+                                rExp = "x=" + Convert.ToString(midT) + ";" + input;
+                                mid = float.Parse(rExe(engine, rExp));
+                                its += "(a+b)/2 = " + Convert.ToString(midT) + bl;
+                                its += "f(" + midT + ") = " + Convert.ToString(mid);
+                                if (mid < 0)
+                                    its += " < 0" + bl;
+                                else
+                                    its += " > 0" + bl;
+
+                                its += "Erro absoluto: " + Convert.ToString(Math.Abs(valorReal - midT)) + bl;
+                                its += "Erro relativo: " + Convert.ToString((Math.Abs(valorReal - midT)) / valorReal) + bl;
+
+                                if ((mid > 0 && b > 0 && a < 0) || (mid < 0 && b < 0 && a > 0))
+                                {
+                                    bT = Convert.ToString(midT);
+                                }
+                                else
+                                {
+                                    aT = Convert.ToString(midT);
+                                }
+                            }
+                            while (count <= Stop);
+                            its += bl + "Resultado: " + midT + bl;
+                            its += bl;
+                        }
+                        else if (comboBox2.SelectedItem.Equals("Valor no ponto"))
+                        {
+                            its += input + bl;
+                            its += "[a,b] = [" + aT + "," + bT + "]" + bl;
+
+                            do
+                            {
+                                its += bl + "-> Iteração " + Convert.ToString(count) + bl + bl;
+                                count++;
+
+                                rExp = "x=" + aT + ";" + input;
+                                a = float.Parse(rExe(engine, rExp));
+                                its += "f(" + aT + ") = " + Convert.ToString(a);
+                                if (a < 0)
+                                    its += " < 0" + bl;
+                                else
+                                    its += " > 0" + bl;
+
+                                rExp = "x=" + bT + ";" + input;
+                                b = float.Parse(rExe(engine, rExp));
+                                its += "f(" + bT + ") = " + Convert.ToString(b);
+                                if (b < 0)
+                                    its += " < 0" + bl;
+                                else
+                                    its += " > 0" + bl;
+
+                                midT = (float.Parse(aT) + float.Parse(bT)) / 2;
+                                rExp = "x=" + Convert.ToString(midT) + ";" + input;
+                                mid = float.Parse(rExe(engine, rExp));
+                                its += "(a+b)/2 = " + Convert.ToString(midT) + bl;
+                                its += "f(" + Convert.ToString(midT) + ") = " + Convert.ToString(mid);
+                                if (mid < 0)
+                                    its += " < 0" + bl;
+                                else
+                                    its += " > 0" + bl;
+
+                                its += "Valor no ponto: " + Convert.ToString(mid);
+
+                                if ((mid > 0 && b > 0 && a < 0) || (mid < 0 && b < 0 && a > 0))
+                                {
+                                    bT = Convert.ToString(midT);
+                                }
+                                else
+                                {
+                                    aT = Convert.ToString(midT);
+                                }
+                            }
+                            while (Math.Abs(mid) > Stop);
+                            its += bl + "Resultado: " + midT + bl;
+                            its += bl;
+                        }
+
+                        textBox6.Show();
+                        textBox6.Text = its;
+                        #region PLOT
+                        pictureBox1.Show();
+                        rPlot(engine, "curve(" + textBox1.Text + "," + Convert.ToString(midT - (0.5 * midT)) + "," + Convert.ToString(midT + (0.5 * midT)) + ");abline(h=0,col=\"black\");abline(v=0,col=\"black\");grid()", pictureBox1);
+                        FileStream stream = new FileStream("rplot.jpg", FileMode.Open, FileAccess.Read);
+                        pictureBox1.Image = Image.FromStream(stream);
+                        stream.Dispose();
+                        File.Delete(@"rplot.jpg");
+                        #endregion*/
+                    }
+                    catch (Exception d)
+                    {
+                        MessageBox.Show("Insira todos os valores corretamente");
+                    }
+
+                }
+
+                #endregion
+
+
                 /*
                 if (textBox1.Text.Contains("curve") || textBox1.Text.Contains("plot"))
                 {
@@ -507,7 +748,8 @@ namespace WindowsFormsApp1
                         MessageBox.Show(rExe(engine, textBox1.Text));
                     }
                 }*/
-            }else if(comboBox2.SelectedItem.Equals("ER") && float.Parse(textBox4.Text) == 0)            
+            }
+            else if(comboBox2.SelectedItem.Equals("ER") && float.Parse(textBox4.Text) == 0)            
                 MessageBox.Show("Para erros relativos, insira um \"Valor Real\" diferente de 0");
             
             engine.ClearGlobalEnvironment();
@@ -539,6 +781,20 @@ namespace WindowsFormsApp1
                 textBox5.Show();
                 comboBox2.Show();
                 comboBox2.SelectedIndex = 0;
+            }else if(comboBox1.SelectedItem.Equals("Método de Newton-Raphson"))
+            {
+                textBox1.Show();
+                label3.Show();
+
+                textBox2.Show();
+                label1.Show();
+                label1.Text = "x0";
+
+                textBox5.Show();
+                label6.Show();
+                label6.Text = "Critério de parada";
+
+                comboBox2.Show();
             }
         }
 
@@ -556,15 +812,18 @@ namespace WindowsFormsApp1
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox2.SelectedItem.Equals("Nº de iterações") || comboBox2.SelectedItem.Equals("Valor no ponto"))
+            if (comboBox1.SelectedItem.Equals("Método da Bisseção") || comboBox1.SelectedItem.Equals("Método da Posição Falsa"))
             {
-                textBox4.Hide();
-                label5.Hide();
-            }
-            else
-            {
-                textBox4.Show();
-                label5.Show();
+                if (comboBox2.SelectedItem.Equals("Nº de iterações") || comboBox2.SelectedItem.Equals("Valor no ponto"))
+                {
+                    textBox4.Hide();
+                    label5.Hide();
+                }
+                else
+                {
+                    textBox4.Show();
+                    label5.Show();
+                }
             }
         }
     }
