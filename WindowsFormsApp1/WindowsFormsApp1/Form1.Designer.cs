@@ -200,6 +200,7 @@
             "Método da Bisseção",
             "Método da Posição Falsa",
             "Metodo da Secante",
+            "Método de Halley",
             "Método de Newton-Raphson",
             "Método do Ponto Fixo"});
             this.comboBox1.Location = new System.Drawing.Point(12, 46);

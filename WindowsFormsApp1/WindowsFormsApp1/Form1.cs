@@ -519,9 +519,9 @@ namespace WindowsFormsApp1
                                 its += "x" + Convert.ToString(count - 2)+" = "+midT+bl;
                                 its += "f(x" + Convert.ToString(count - 2) + ") = " + Convert.ToString(f)+bl;
                                 its += "f'(x" + Convert.ToString(count - 2) + ") = " + Convert.ToString(f_linha)+bl;
-
+                                its += "x" + Convert.ToString(count - 1) + " = " + Convert.ToString(midT) + " - ( " + Convert.ToString(f) + " / " + Convert.ToString(f_linha) + " )" + bl;
                                 midT = midT - (f / f_linha);
-                                its += "x" + Convert.ToString(count-1) + " = " + Convert.ToString(midT);
+                                its += "x" + Convert.ToString(count-1) + " = " + Convert.ToString(midT)+bl;
 
                                 its += "Erro absoluto: " + Convert.ToString(Math.Abs(valorReal - midT)) + bl;                                
                             }
@@ -548,9 +548,9 @@ namespace WindowsFormsApp1
                                 its += "x" + Convert.ToString(count - 2) + " = " + midT + bl;
                                 its += "f(x" + Convert.ToString(count - 2) + ") = " + Convert.ToString(f) + bl;
                                 its += "f'(x" + Convert.ToString(count - 2) + ") = " + Convert.ToString(f_linha) + bl;
-
+                                its += "x" + Convert.ToString(count - 1) + " = " + Convert.ToString(midT) + " - ( " + Convert.ToString(f) + " / " + Convert.ToString(f_linha) + " )" + bl;
                                 midT = midT - (f / f_linha);
-                                its += "x" + Convert.ToString(count - 1) + " = " + Convert.ToString(midT);
+                                its += "x" + Convert.ToString(count - 1) + " = " + Convert.ToString(midT)+bl;
 
                                 its += "Erro relativo: " + Convert.ToString((Math.Abs(valorReal - midT)) / valorReal) + bl;
                                 
@@ -575,9 +575,9 @@ namespace WindowsFormsApp1
                                 its += "x" + Convert.ToString(count - 2) + " = " + midT + bl;
                                 its += "f(x" + Convert.ToString(count - 2) + ") = " + Convert.ToString(f) + bl;
                                 its += "f'(x" + Convert.ToString(count - 2) + ") = " + Convert.ToString(f_linha) + bl;
-
+                                its += "x" + Convert.ToString(count - 1) + " = " + Convert.ToString(midT) + " - ( " + Convert.ToString(f) + " / " + Convert.ToString(f_linha) + " )" + bl;
                                 midT = midT - (f / f_linha);
-                                its += "x" + Convert.ToString(count - 1) + " = " + Convert.ToString(midT);
+                                its += "x" + Convert.ToString(count - 1) + " = " + Convert.ToString(midT)+bl;
 
                             }
                             while (count <= Stop);
@@ -601,7 +601,9 @@ namespace WindowsFormsApp1
                                 its += "f(x" + Convert.ToString(count - 2) + ") = " + Convert.ToString(f) + bl;
                                 its += "f'(x" + Convert.ToString(count - 2) + ") = " + Convert.ToString(f_linha) + bl;
 
+                                its += "x" + Convert.ToString(count - 1) + " = " + Convert.ToString(midT) + " - ( "+Convert.ToString(f)+" / "+Convert.ToString(f_linha)+" )"+bl;
                                 midT = midT - (f / f_linha);
+                                
                                 its += "x" + Convert.ToString(count - 1) + " = " + Convert.ToString(midT)+bl;
 
                                 rExp = "x=" + Convert.ToString(midT) + ";" + input;                                
@@ -628,6 +630,179 @@ namespace WindowsFormsApp1
                     catch (Exception d)
                     {
                         MessageBox.Show("Insira todos os valores corretamente");
+                    }
+
+                }
+                #endregion
+
+                #region Metodo de Halley
+                if (comboBox1.SelectedItem.Equals("Método de Halley"))
+                {
+                    int count = 1;
+                    float midT = 0, mid = 0;
+                    float f_2linha;
+                    float f_linha;
+                    float f;
+                    string valT;
+                    input = textBox1.Text;
+                    string aT = textBox2.Text;
+
+                    try
+                    {
+                        Stop = float.Parse(textBox5.Text);
+                        midT = float.Parse(aT);
+                        its += input + bl;
+                        if (comboBox2.SelectedItem.Equals("EA"))
+                        {
+
+                            do
+                            {
+                                its += bl + "-> Iteração " + Convert.ToString(count) + bl + bl;
+                                count++;
+
+                                rExp = "f = function(x) " + input + ";(f(" + Convert.ToString(midT) + "+0.0000001)-2*f(" + Convert.ToString(midT) + ")+f("+ Convert.ToString(midT) + "-0.0000001))/(0.0000001^2);";
+                                f_2linha = float.Parse(rExe(engine, rExp));
+
+                                rExp = "f = function(x) " + input + ";(f(" + Convert.ToString(midT) + "+0.0000001)-f(" + Convert.ToString(midT) + "))/(0.0000001);";
+                                f_linha = float.Parse(rExe(engine, rExp));
+
+                                rExp = "f(" + midT + ");";
+                                f = float.Parse(rExe(engine, rExp));
+
+                                its += "x" + Convert.ToString(count - 2) + " = " + midT + bl;
+                                its += "f(x" + Convert.ToString(count - 2) + ") = " + Convert.ToString(f) + bl;
+                                its += "f'(x" + Convert.ToString(count - 2) + ") = " + Convert.ToString(f_linha) + bl;
+
+                                its += "f''(x" + Convert.ToString(count - 2) + ") = " + Convert.ToString(f_2linha) + bl;
+
+                            its += "x" + Convert.ToString(count - 1) + " = " + Convert.ToString(midT) + " - ( (2* " + Convert.ToString(f) + "* " + Convert.ToString(f_linha) + ") / ( 2*(" + Convert.ToString(f_linha) + ")^2 - (" + Convert.ToString(f) + "* " + Convert.ToString(f_2linha) + ") ) )" + bl;
+
+                            midT = midT - ((2*f *f_linha)/(2*(f_linha*f_linha)-f*f_2linha));
+                                its += "x" + Convert.ToString(count - 1) + " = " + Convert.ToString(midT)+bl;
+
+                                its += "Erro absoluto: " + Convert.ToString(Math.Abs(valorReal - midT)) + bl;
+                            }
+                            while (Math.Abs(valorReal - midT) > Stop);
+                            its += bl + "Resultado: " + midT + bl;
+                            its += bl;
+                        }
+                        else if (comboBox2.SelectedItem.Equals("ER"))
+                        {
+
+                            do
+                            {
+                                its += bl + "-> Iteração " + Convert.ToString(count) + bl + bl;
+                                count++;
+                                rExp = "f = function(x) " + input + ";(f(" + Convert.ToString(midT) + "+0.0000001)-2*f(" + Convert.ToString(midT) + ")+f(" + Convert.ToString(midT) + "-0.0000001))/(0.0000001^2);";
+                                f_2linha = float.Parse(rExe(engine, rExp));
+
+                                rExp = "f = function(x) " + input + ";(f(" + Convert.ToString(midT) + "+0.0000001)-f(" + Convert.ToString(midT) + "))/(0.0000001);";
+                                f_linha = float.Parse(rExe(engine, rExp));
+
+                                rExp = "f(" + midT + ");";
+                                f = float.Parse(rExe(engine, rExp));
+
+                                its += "x" + Convert.ToString(count - 2) + " = " + midT + bl;
+                                its += "f(x" + Convert.ToString(count - 2) + ") = " + Convert.ToString(f) + bl;
+                                its += "f'(x" + Convert.ToString(count - 2) + ") = " + Convert.ToString(f_linha) + bl;
+
+                                its += "f''(x" + Convert.ToString(count - 2) + ") = " + Convert.ToString(f_2linha) + bl;
+
+                            its += "x" + Convert.ToString(count - 1) + " = " + Convert.ToString(midT) + " - ( (2* " + Convert.ToString(f) + "* " + Convert.ToString(f_linha) + ") / ( 2*(" + Convert.ToString(f_linha) + ")^2 - (" + Convert.ToString(f) + "* " + Convert.ToString(f_2linha) + ") ) )" + bl;
+
+                            midT = midT - ((2 * f * f_linha) / (2 * (f_linha * f_linha) - f * f_2linha));
+                                its += "x" + Convert.ToString(count - 1) + " = " + Convert.ToString(midT)+bl;
+
+                                its += "Erro relativo: " + Convert.ToString((Math.Abs(valorReal - midT)) / valorReal) + bl;
+
+                            }
+                            while ((Math.Abs(valorReal - midT) / valorReal) > Stop);
+                            its += bl + "Resultado: " + midT + bl;
+                            its += bl;
+                        }
+                        else if (comboBox2.SelectedItem.Equals("Nº de iterações"))
+                        {
+                            do
+                            {
+                                its += bl + "-> Iteração " + Convert.ToString(count) + bl + bl;
+                                count++;
+                                rExp = "f = function(x) " + input + ";(f(" + Convert.ToString(midT) + "+0.0000001)-2*f(" + Convert.ToString(midT) + ")+f(" + Convert.ToString(midT) + "-0.0000001))/(0.0000001^2);";
+                                f_2linha = float.Parse(rExe(engine, rExp));
+
+                                rExp = "f = function(x) " + input + ";(f(" + Convert.ToString(midT) + "+0.0000001)-f(" + Convert.ToString(midT) + "))/(0.0000001);";
+                                f_linha = float.Parse(rExe(engine, rExp));
+
+                                rExp = "f(" + midT + ");";
+                                f = float.Parse(rExe(engine, rExp));
+
+                                its += "x" + Convert.ToString(count - 2) + " = " + midT + bl;
+                                its += "f(x" + Convert.ToString(count - 2) + ") = " + Convert.ToString(f) + bl;
+                                its += "f'(x" + Convert.ToString(count - 2) + ") = " + Convert.ToString(f_linha) + bl;
+
+                                its += "f''(x" + Convert.ToString(count - 2) + ") = " + Convert.ToString(f_2linha) + bl;
+
+                            its += "x" + Convert.ToString(count - 1) + " = " + Convert.ToString(midT) + " - ( (2* " + Convert.ToString(f) + "* " + Convert.ToString(f_linha) + ") / ( 2*(" + Convert.ToString(f_linha) + ")^2 - (" + Convert.ToString(f) + "* " + Convert.ToString(f_2linha) + ") ) )" + bl;
+
+                            midT = midT - ((2 * f * f_linha) / (2 * (f_linha * f_linha) - f * f_2linha));
+                                its += "x" + Convert.ToString(count - 1) + " = " + Convert.ToString(midT)+bl;
+
+                            }
+                            while (count <= Stop);
+                            its += bl + "Resultado: " + midT + bl;
+                            its += bl;
+                        }
+                        else if (comboBox2.SelectedItem.Equals("Valor no ponto"))
+                        {
+
+                            do
+                            {
+                                its += bl + "-> Iteração " + Convert.ToString(count) + bl + bl;
+                                count++;
+
+                                rExp = "f = function(x) " + input + ";(f(" + Convert.ToString(midT) + "+0.0000001)-2*f(" + Convert.ToString(midT) + ")+f(" + Convert.ToString(midT) + "-0.0000001))/(0.0000001^2);";
+                                f_2linha = float.Parse(rExe(engine, rExp));
+
+                                rExp = "f = function(x) " + input + ";(f(" + Convert.ToString(midT) + "+0.0000001)-f(" + Convert.ToString(midT) + "))/(0.0000001);";
+                                f_linha = float.Parse(rExe(engine, rExp));
+
+                                rExp = "f(" + midT + ");";
+                                f = float.Parse(rExe(engine, rExp));
+
+                                its += "x" + Convert.ToString(count - 2) + " = " + midT + bl;
+                                its += "f(x" + Convert.ToString(count - 2) + ") = " + Convert.ToString(f) + bl;
+                                its += "f'(x" + Convert.ToString(count - 2) + ") = " + Convert.ToString(f_linha) + bl;
+
+                                its += "f''(x" + Convert.ToString(count - 2) + ") = " + Convert.ToString(f_2linha) + bl;
+
+                                its += "x" + Convert.ToString(count - 1) + " = " + Convert.ToString(midT) + " - ( (2* " + Convert.ToString(f) + "* " + Convert.ToString(f_linha) + ") / ( 2*(" + Convert.ToString(f_linha) + ")^2 - (" + Convert.ToString(f) + "* " + Convert.ToString(f_2linha) + ") ) )" + bl;
+
+                                midT = midT - ((2 * f * f_linha) / (2 * (f_linha * f_linha) - f * f_2linha));
+                                its += "x" + Convert.ToString(count - 1) + " = " + Convert.ToString(midT) + bl;
+
+                                rExp = "x=" + Convert.ToString(midT) + ";" + input;
+                                mid = float.Parse(rExe(engine, rExp));
+
+                                its += "Valor no ponto: " + Convert.ToString(mid) + bl;
+                            }
+                            while (Math.Abs(mid) > Stop);
+                            its += bl + "Resultado: " + midT + bl;
+                            its += bl;
+                        }
+
+                        textBox6.Show();
+                        textBox6.Text = its;
+                        #region PLOT
+                        pictureBox1.Show();
+                        rPlot(engine, "curve(" + textBox1.Text + "," + Convert.ToString(midT - (0.5 * midT)) + "," + Convert.ToString(midT + (0.5 * midT)) + ");abline(h=0,col=\"black\");abline(v=0,col=\"black\");grid()", pictureBox1);
+                        FileStream stream = new FileStream("rplot.jpg", FileMode.Open, FileAccess.Read);
+                        pictureBox1.Image = Image.FromStream(stream);
+                        stream.Dispose();
+                        File.Delete(@"rplot.jpg");
+                        #endregion*/
+                    }
+                    catch (Exception d)
+                    {
+                       MessageBox.Show("Insira todos os valores corretamente");
                     }
 
                 }
@@ -693,7 +868,7 @@ namespace WindowsFormsApp1
                 textBox5.Show();
                 comboBox2.Show();
                 comboBox2.SelectedIndex = 0;
-            }else if(comboBox1.SelectedItem.Equals("Método de Newton-Raphson"))
+            }else if(comboBox1.SelectedItem.Equals("Método de Newton-Raphson")|| comboBox1.SelectedItem.Equals("Método de Halley"))
             {
                 label1.Hide();
                 label4.Hide();
@@ -739,7 +914,7 @@ namespace WindowsFormsApp1
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedItem.Equals("Método da Bisseção") || comboBox1.SelectedItem.Equals("Método da Posição Falsa")|| comboBox1.SelectedItem.Equals("Método de Newton-Raphson"))
+            if (comboBox1.SelectedItem.Equals("Método da Bisseção") || comboBox1.SelectedItem.Equals("Método da Posição Falsa")|| comboBox1.SelectedItem.Equals("Método de Newton-Raphson")|| comboBox1.SelectedItem.Equals("Método de Halley"))
             {
                 if (comboBox2.SelectedItem.Equals("Nº de iterações") || comboBox2.SelectedItem.Equals("Valor no ponto"))
                 {
