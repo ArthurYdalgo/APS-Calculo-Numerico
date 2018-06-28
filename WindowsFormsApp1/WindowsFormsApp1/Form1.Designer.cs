@@ -199,10 +199,8 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Método da Bisseção",
             "Método da Posição Falsa",
-            "Metodo da Secante",
             "Método de Halley",
-            "Método de Newton-Raphson",
-            "Método do Ponto Fixo"});
+            "Método de Newton-Raphson"});
             this.comboBox1.Location = new System.Drawing.Point(12, 46);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(355, 21);

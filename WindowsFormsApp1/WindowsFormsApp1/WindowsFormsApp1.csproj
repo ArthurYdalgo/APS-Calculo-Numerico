@@ -96,5 +96,8 @@
     <Content Include="Scripts\jquery-1.10.0.min.js" />
     <Content Include="Scripts\RGraph.custom.js" />
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
